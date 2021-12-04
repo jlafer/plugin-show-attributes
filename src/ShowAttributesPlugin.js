@@ -1,7 +1,9 @@
+import React from 'react';
 import { Manager } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
 import reducers, { namespace, actions } from './states';
+import CustomerInfoContainer from './CustomerInfoContainer';
 
 const PLUGIN_NAME = 'ShowAttributesPlugin';
 
@@ -16,9 +18,10 @@ export default class ShowAttributesPlugin extends FlexPlugin {
     super(PLUGIN_NAME);
   }
 
-  init(_flex, manager) {
+  init(flex, manager) {
     this.registerReducers(manager);
     manager.workerClient.on("reservationCreated", onReservationCreated);
+    flex.AgentDesktopView.Panel2.Content.add(<CustomerInfoContainer key="customer-info"/>);
   }
 
   registerReducers(manager) {

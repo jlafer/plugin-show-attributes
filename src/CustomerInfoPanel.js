@@ -1,6 +1,25 @@
-const
-fetch(`https://456986ba-6d99-406f-a86c-3f1b8d676f07.mock.pstmn.io/customers/${id}`)
-.then(resp => {
-  console.log('---------------------resp', resp);
-  const data = resp;
-  const {firstName, lastName, email} = data;
+import React from 'react';
+
+const CustomerInfoPanel = (props) => {
+  const {customerInfo} = props;
+  const {customer, fetchStatus, error} = customerInfo;
+
+  if (fetchStatus === 'none') {
+    return null;
+  }
+  if (fetchStatus === 'loading') {
+    return <div>Loading...</div>;
+  }
+  if (fetchStatus === 'failed') {
+    return <div>An error has occurred: {error}</div>;
+  }
+  const {name, email, phone, firstName, lastName} = customer;
+  return (
+    <div>
+      <div>Name: {name}</div>
+      <div>Email: {email}</div>
+    </div>
+  )
+}
+
+export default CustomerInfoPanel;

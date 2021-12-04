@@ -24,7 +24,7 @@ export function reduce(state = initialState, action) {
     case `${FETCH_CUSTOMER}_PENDING`: {
       return {
         ...state,
-        fetchStatus: 'Loading...',
+        fetchStatus: 'loading',
         customer: {},
         error: ''
       };
@@ -32,7 +32,7 @@ export function reduce(state = initialState, action) {
     case `${FETCH_CUSTOMER}_FULFILLED`: {
       return {
         ...state,
-        fetchStatus: 'Done',
+        fetchStatus: 'done',
         customer: action.payload,
         error: ''
       };
@@ -40,7 +40,7 @@ export function reduce(state = initialState, action) {
     case `${FETCH_CUSTOMER}_REJECTED`: {
       return {
         ...state,
-        fetchStatus: 'Failed',
+        fetchStatus: 'failed',
         error: action.payload.error
       };
     }
