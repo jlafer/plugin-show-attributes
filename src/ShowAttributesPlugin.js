@@ -13,6 +13,11 @@ const onReservationCreated = (reservation) => {
   dispatch( actions.fetchCustomerActionCreator(task.attributes.id) );
 };
 
+const afterCompleteTask = (_payload) => {
+  const {dispatch} = Manager.getInstance().store;
+  dispatch( actions.clearCustomerActionCreator() );
+};
+
 export default class ShowAttributesPlugin extends FlexPlugin {
   constructor() {
     super(PLUGIN_NAME);
@@ -21,6 +26,7 @@ export default class ShowAttributesPlugin extends FlexPlugin {
   init(flex, manager) {
     this.registerReducers(manager);
     manager.workerClient.on("reservationCreated", onReservationCreated);
+    flex.Actions.addListener("afterCompleteTask", afterCompleteTask);
     flex.AgentDesktopView.Panel2.Content.add(<CustomerInfoContainer key="customer-info"/>);
   }
 

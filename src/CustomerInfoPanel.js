@@ -13,11 +13,14 @@ const CustomerInfoPanel = (props) => {
   if (fetchStatus === 'failed') {
     return <div>An error has occurred: {error}</div>;
   }
-  const {name, email, phone, firstName, lastName} = customer;
+  const {id, email, phone, firstName, lastName} = customer;
   return (
     <div>
-      <div>Name: {name}</div>
+      <div>Id: {id}</div>
+      <div>First: {firstName}</div>
+      <div>Last: {lastName}</div>
       <div>Email: {email}</div>
+      <div>Phone: {phone}</div>
     </div>
   )
 }

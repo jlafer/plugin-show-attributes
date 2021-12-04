@@ -1,4 +1,5 @@
 const FETCH_CUSTOMER = 'FETCH_CUSTOMER';
+const CLEAR_CUSTOMER = 'CLEAR_CUSTOMER';
 
 const initialState = {
   fetchStatus: 'none',
@@ -16,6 +17,10 @@ export const actions = {
   fetchCustomerActionCreator: (id) => ({
     type: FETCH_CUSTOMER,
     payload: fetchCustomerData(id),
+  }),
+  clearCustomerActionCreator: () => ({
+    type: CLEAR_CUSTOMER,
+    payload: {}
   })
 }
 
@@ -43,6 +48,9 @@ export function reduce(state = initialState, action) {
         fetchStatus: 'failed',
         error: action.payload.error
       };
+    }
+    case CLEAR_CUSTOMER: {
+      return initialState;
     }
     default:
       return state;
