@@ -8,15 +8,15 @@ const initialState = {
 };
 
 
-function fetchCustomerData(id) {
-  return fetch(`https://456986ba-6d99-406f-a86c-3f1b8d676f07.mock.pstmn.io/customers/${id}`)
+function fetchCustomerData(url, id) {
+  return fetch(`${url}/${id}`)
     .then((response) => response.json())
 }
 
 export const actions = {
-  fetchCustomerActionCreator: (id) => ({
+  fetchCustomerActionCreator: (url, id) => ({
     type: FETCH_CUSTOMER,
-    payload: fetchCustomerData(id),
+    payload: fetchCustomerData(url, id),
   }),
   clearCustomerActionCreator: () => ({
     type: CLEAR_CUSTOMER,

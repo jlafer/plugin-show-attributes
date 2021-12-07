@@ -7,10 +7,12 @@ import CustomerInfoContainer from './CustomerInfoContainer';
 
 const PLUGIN_NAME = 'ShowAttributesPlugin';
 
+const {REACT_APP_CUSTOMER_ENDPOINT} = process.env;
+
 const onReservationCreated = (reservation) => {
   const task = reservation.task;
   const {dispatch} = Manager.getInstance().store;
-  dispatch( actions.fetchCustomerActionCreator(task.attributes.id) );
+  dispatch( actions.fetchCustomerActionCreator(REACT_APP_CUSTOMER_ENDPOINT, task.attributes.id) );
 };
 
 const afterCompleteTask = (_payload) => {
